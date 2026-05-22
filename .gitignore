@@ -57,3 +57,11 @@ generation_log.jsonl
 scripts/
 src/server/ai-private
 src/server/ai-public
+
+
+
+devvit.json
+package.json
+package-lock.json
+tsconfig.json
+vite.config.ts
