@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "mailguardian2",
+  "permissions": {
+    "reddit": {
+      "enable": true,
+      "scope": "moderator"
+    },
+    "redis": true,
+    "http": {
+      "enable": true,
+      "domains": [
+        "generativelanguage.googleapis.com"
+      ]
+    }
+  },
+  "marketingAssets": {
+    "icon": "assets/appicon.png"
+  },
+  "media": {
+    "dir": "assets"
+  },
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.cjs"
+  },
+  "menu": {
+    "items": [
+      {
+        "label": "Mail Guardian: Settings",
+        "description": "Configure the AI mod-mail responder for this subreddit.",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/open-settings"
+      },
+      {
+        "label": "Mail Guardian: Scan Now",
+        "description": "Run an immediate AI sweep over open mod-mail conversations.",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/scan-now"
+      },
+      {
+        "label": "Mail Guardian: View / Regenerate Tone",
+        "description": "View the current voice/tone prompt or regenerate it.",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/tone"
+      },
+      {
+        "label": "Mail Guardian: Member Scanner",
+        "description": "Scan any Reddit user and post a mod-only scanner report to Mod Mail.",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/member-scanner"
+      }
+    ]
+  },
+  "forms": {
+    "amu-settings": "/internal/menu/forms/settings",
+    "amu-tone": "/internal/menu/forms/tone",
+    "amu-member-scanner": "/internal/menu/forms/member-scanner"
+  },
+  "triggers": {
+    "onModMail": "/internal/triggers/on-modmail",
+    "onModAction": "/internal/triggers/on-mod-action"
+  },
+  "scheduler": {
+    "tasks": {
+      "automailScanTick": {
+        "endpoint": "/internal/triggers/automail-scan-tick",
+        "cron": "*/15 * * * *"
+      }
+    }
+  },
+  "dev": {
+    "subreddit": "mailguardian2_dev"
+  }
+}
